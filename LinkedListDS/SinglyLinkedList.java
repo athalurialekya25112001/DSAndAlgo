@@ -49,22 +49,40 @@ public class SinglyLinkedList {
 	}
 	public void insertAtPos(int pos ,Object data)
 	{
-		Node n = new Node(data);
-		
-		if(pos==0)
+		if(pos>size())
 		{
-			insertAtBegin(data);
+			System.out.println("Invalid Position");
 		}
-		else 
+		else
 		{
-			Node temp=head;
-			for(int i=0;i<pos-1;i++)
+			Node n = new Node(data);
+			
+			if(pos==0)
 			{
-				temp=temp.next;			
+				insertAtBegin(data);
 			}
-			n.next=temp.next;
-			temp.next=n;
+			else 
+			{
+				Node temp=head;
+				for(int i=0;i<pos-1;i++)
+				{
+					temp=temp.next;			
+				}
+				n.next=temp.next;
+				temp.next=n;
+			}
 		}
+	}
+	public int size()
+	{
+		Node temp=head;
+		int c=0;
+		while(temp!=null)
+		{
+			temp=temp.next;
+			c++;
+		}
+		return c;
 	}
 	public void display()
 	{
@@ -112,9 +130,7 @@ public class SinglyLinkedList {
 		else
 		{
 			Node temp=head;
-			Node temp1=head.next;
-			temp.next=null;
-			head=temp1;
+			head=temp.next;
 		}
 	}
 	public void deleteAtPos(int pos)
@@ -152,39 +168,43 @@ public class SinglyLinkedList {
 			System.out.println("Choose the operation you wanted to perform :\n "
 					+ "1.Insert At End\n 2.Insert At Beginning \n 3.Insert At Position\n "
 					+ "4.Delete At End\n 5.Delete At Beginning \n 6.Delete At Position\n "
-					+ "7.Display  \n 8.Exit\n");
+					+ "7.Display \n 8.Size \n 9.Exit\n");
 			Scanner sc = new Scanner(System.in);
-			int opt = sc.nextInt();
-			switch(opt)
-			{
-			case 1:
-					System.out.println("Enter the data you wanted to insert at end: ");
-			        Object d=sc.next();
-			        sll.insertAtEnd(d);
-			        break;
-			case 2:
-					System.out.println("Enter the data you wanted to insert at beginning: ");
-					Object d1=sc.next();
-					sll.insertAtBegin(d1);
-					break;
-			case 3:
-					System.out.println("Enter the position: ");
-					int p=sc.nextInt();
-					System.out.println("Enter the data you wanted to insert at position: ");
-					Object d2=sc.next();
-					sll.insertAtPos(p,d2);
-					break;
-			case 4:	sll.deleteAtEnd(); break;
-			case 5:	sll.deleteAtBegin(); break;
-			case 6:	System.out.println("Enter the position you wnated to delete : ");
-					int p1=sc.nextInt();
-					sll.deleteAtPos(p1); break;
-			case 7: sll.display();
-					break;
-			case 8: System.exit(0);
-					break;
-				
-			}
+				int opt = sc.nextInt();
+				switch(opt)
+				{
+				case 1:
+						System.out.println("Enter the data you wanted to insert at end: ");
+				        Object d=sc.next();
+				        sll.insertAtEnd(d);
+				        break;
+				case 2:
+						System.out.println("Enter the data you wanted to insert at beginning: ");
+						Object d1=sc.next();
+						sll.insertAtBegin(d1);
+						break;
+				case 3:
+						System.out.println("Enter the position: ");
+						int p=sc.nextInt();
+						System.out.println("Enter the data you wanted to insert at position: ");
+						Object d2=sc.next();
+						sll.insertAtPos(p,d2);
+						break;
+				case 4:	sll.deleteAtEnd(); break;
+				case 5:	sll.deleteAtBegin(); break;
+				case 6:	System.out.println("Enter the position you wnated to delete : ");
+						int p1=sc.nextInt();
+						sll.deleteAtPos(p1); break;
+				case 7: sll.display();
+						break;
+				case 8: int s= sll.size();
+						System.out.println(s);
+						break;
+				case 9: System.exit(0);
+						break;
+					
+				}
+			
 		}
 		
 	}

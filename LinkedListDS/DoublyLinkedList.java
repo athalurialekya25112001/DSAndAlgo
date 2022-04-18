@@ -62,13 +62,23 @@ public class DoublyLinkedList {
 		}
 	}
 
+	public int size() {
+		Node temp = head;
+		int c = 0;
+		while (temp != null) {
+			temp = temp.next;
+			c++;
+		}
+		return c;
+	}
+
 	public void display() {
 		Node temp = head;
-		while (temp.next != null) {
+		while (temp != null) {
 			System.out.print(temp.data + " ");
 			temp = temp.next;
 		}
-		System.out.println(temp.data);
+		System.out.println();
 	}
 
 	public void deleteAtEnd() {
@@ -131,7 +141,8 @@ public class DoublyLinkedList {
 		while (true) {
 			System.out.println("Choose the operation you wanted to perform :\n "
 					+ "1.Insert At End\n 2.Insert At Beginning \n 3.Insert At Position\n "
-					+ "4.Delete At End\n 5.Delete At Beginning \n 6.Delete At Position\n " + "7.Display  \n 8.Exit\n");
+					+ "4.Delete At End\n 5.Delete At Beginning \n 6.Delete At Position\n "
+					+ "7.Display  \n 8.Length of linked list \n 9.Exit\n");
 			Scanner sc = new Scanner(System.in);
 			int opt = sc.nextInt();
 			switch (opt) {
@@ -167,6 +178,10 @@ public class DoublyLinkedList {
 				dll.display();
 				break;
 			case 8:
+				int s = dll.size();
+				System.out.println(s);
+				break;
+			case 9:
 				System.exit(0);
 				break;
 
